@@ -51,9 +51,8 @@ let qmax = questions.length-1; //length of question array
 
 for (let i = 0; i<qmax; i++){
     q = questions[qIndex];
-    Text.qDisplay = q;
-    Text.aDisplay = <button>answers[qIndex]</button>;
-    
+    qDisplay = Text.q;
+        
 
 
 
