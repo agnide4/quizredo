@@ -1,0 +1,42 @@
+.hRow{
+/*main header container*/
+
+}
+
+.header{
+    /*header */
+
+}
+.qContainer{
+    /*Larger quiz container, includes timer and scores*/
+
+}
+
+.quiz{
+    /*Quiz container for quiz only*/
+
+
+}
+.qData{
+    /*Contains timer and Scores stuck up on each other to the right*/
+
+
+}
+
+.timer{
+    /*contains timer only*/
+
+}
+.scores{
+    /*contains scores*/
+    
+}
+.hScores{
+    /*Table to store highest scores
+
+}
+.footer{
+    /*Standard footer element*/
+
+    
+}
