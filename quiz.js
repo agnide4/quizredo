@@ -1,10 +1,13 @@
+
+
+
 //Variables
 
-let qDisplay = $("qcontainer");//display question
-let aDisplay = $("quiz");//display answers
-let tDisplay = $("timer");//display timer
-let sDisplay = $("scores");//display scores
-let sButton = $("start");//Start quiz on click
+let qDisplay = $(".qContainer").Text;//display question
+let aDisplay = $(".quiz");//display answers
+let tDisplay = $(".timer");//display timer
+let sDisplay = $(".scores");//display scores
+let sButton = $(".start");//Start quiz on click
 
 //Questions in an array & answers in objects
 let questions = [
@@ -44,6 +47,12 @@ let answers = [
 
 ]
 
+
+
+
+
+$(document).ready(function(){
+
 //Function to display quiz
 
 let qIndex = 0; //current question index
@@ -51,25 +60,26 @@ let qmax = questions.length-1; //length of question array
 
 function showQuiz(){
 
-    for (qIndex = 0; qIndex<qmax; qIndex++){
     
-        qDisplay.innerHTML = '<p>' + questions[qIndex] + '</p>';
-        for (const choices in answers[qIndex]){
-            aDisplay.innerHTML = '<button>' + answers[choices] + '</button>';
-        }
+        console.log(questions[qIndex]);
+        $(".qContainer").text( questions[qIndex]);
+        const entries = Object.values(answers[qIndex]);
+        console.log(entries.length);
+        
+
+        
+        console.log(entries);
+        
+       
             
 
+
+    
 }
 showQuiz();
-
-
-
+//console.log(showQuiz());
     
+});
 
 
-    
-
-
-    
-}
 
