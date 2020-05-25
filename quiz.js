@@ -62,10 +62,10 @@ function showQuiz(){
 
     
         console.log(questions[qIndex]);
-        $(".qContainer").text( questions[qIndex]);
+        $(".quiz").text( questions[qIndex]);
         const entries = Object.values(answers[qIndex]);
         console.log(entries.length);
-        
+        $("#c1").innerHTML = entries[0];
 
         
         console.log(entries);
