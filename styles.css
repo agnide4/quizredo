@@ -1,30 +1,56 @@
 .hRow{
 /*main header container*/
+border-style: double;
+height: 75px;
+
+
 
 }
 
 .header{
     /*header */
+    border-style: dashed;
+    height: 70px;
+
 
 }
 .qContainer{
     /*Larger quiz container, includes timer and scores*/
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border-style: dotted;
+    height: 550px;
+
 
 }
 
 .quiz{
     /*Quiz container for quiz only*/
-
-
+    display: flexbox;
+    border-style: solid;
+    height: 545px;
+    width: 850px;
+    
 }
 .qData{
     /*Contains timer and Scores stuck up on each other to the right*/
+    border-style: solid;
+    border-color: red;
+    height: 545px;
+    width: 420px;
+    display:flexbox;
+
+
 
 
 }
 
 .timer{
     /*contains timer only*/
+    border-color: green;
+    border-style: dashed;
+    height: 350px;
 
 }
 .scores{

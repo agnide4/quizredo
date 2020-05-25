@@ -49,10 +49,18 @@ let answers = [
 let qIndex = 0; //current question index
 let qmax = questions.length-1; //length of question array
 
-for (let i = 0; i<qmax; i++){
-    q = questions[qIndex];
-    qDisplay = Text.q;
-        
+function showQuiz(){
+
+    for (qIndex = 0; qIndex<qmax; qIndex++){
+    
+        qDisplay.innerHTML = '<p>' + questions[qIndex] + '</p>';
+        for (const choices in answers[qIndex]){
+            aDisplay.innerHTML = '<button>' + answers[choices] + '</button>';
+        }
+            
+
+}
+showQuiz();
 
 
 
