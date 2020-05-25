@@ -59,23 +59,26 @@ let qIndex = 0; //current question index
 let qmax = questions.length-1; //length of question array
 
 function showQuiz(){
-
-    
+  
         console.log(questions[qIndex]);
-        $(".quiz").text( questions[qIndex]);
-        const entries = Object.values(answers[qIndex]);
-        console.log(entries.length);
-        $("#c1").innerHTML = entries[0];
-
-        
-        console.log(entries);
-        
-       
-            
-
-
-    
+        $(".quiz").text(questions[qIndex]);   
+  
 }
+
+
+function showChoices () {
+    const entries = Object.values(answers[qIndex]);
+        console.log(entries.length);
+        //$("#c1").innerHTML += entries[0];
+    //var more=document.getElementById("more");
+    for (let i = 0; i < entries.length; i++) {
+      let choices = document.createElement("button");
+      choices.innerHTML= entries[i];
+      aDisplay.appendChild(choices);
+    }
+  }
+
+
 showQuiz();
 //console.log(showQuiz());
     
