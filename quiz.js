@@ -27,7 +27,7 @@ let answers = [
     },
     q1 = {
         A: "The User's machine running a Web browser",
-        B: " The Web server",
+        B: "The Web server",
         C: "A central machine deep within Netscape's corporate offices",
         D: "None of the above"
     },
@@ -48,7 +48,13 @@ let answers = [
 ]
 
 
+let corrChoices = [
+    "Web programming language",
+    "The Web server",
+    "Storing numbers, dates, or other values",
+    "Accept parameters and Return a value",
 
+]
 
 
 $(document).ready(function(){
@@ -57,6 +63,8 @@ $(document).ready(function(){
 
 let qIndex = 0; //current question index
 let qmax = questions.length-1; //length of question array
+let clickedCh = "";
+let points = 0;
 
 function showQuiz(){
    console.log(questions[qIndex]);
@@ -77,7 +85,7 @@ function showChoices () {
     for (let i = 0; i < entries.length; i++) {
       let choices = document.createElement("button");
       choices.classList.add("btnr");
-      $("btnr").css("display", "block");
+      choices.style.display = "block";
       choices.innerHTML= entries[i];
       aDisplay.append(choices);
 
@@ -86,12 +94,47 @@ function showChoices () {
 
     
 
-
+    clickedCh.empty;
     $("btnr").on("click", function(){
-        console.log(this)
-    })
+        console.log(this.innerHTML);
+        clickedCh = this.innerHTML;
+    });
     // create event listener
   }
+
+  function checkAnswer(){
+      if (clickedCh == corrChoices[qIndex]){
+          var result = sDisplay.createElement("h4");
+          result = "";
+          result.innerHTML = "You are correct" + points;
+          points+=5;
+          
+      }else {
+          var result = sDisplay.createElement("h4");
+          result = "";
+          result.innerHTML = "Wrong answer" + points;
+      }
+     
+
+  }
+
+  function quizFlow(){
+      qIndex++;
+      if (qIndex<questions.length){
+          showQuiz();
+      }
+      else{
+          
+          var end = $("#finals").createElement(h1);
+          end.innerHTML = "GAME OVER <br> Total score is:" + points ;
+
+
+
+
+      }
+  }
+
+
 
 
 showQuiz();
