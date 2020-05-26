@@ -81,7 +81,7 @@ function showQuiz(){
 
 function showChoices () {
     const entries = Object.values(answers[qIndex]);
-        console.log(entries.length);
+        //console.log(entries.length);
     for (let i = 0; i < entries.length; i++) {
       let choices = document.createElement("button");
       choices.classList.add("btnr");
@@ -95,25 +95,32 @@ function showChoices () {
     
 
     clickedCh.empty;
-    $("btnr").on("click", function(){
-        console.log(this.innerHTML);
+    $(".btnr").on("click", function(){
+        console.log(this);
         clickedCh = this.innerHTML;
+        console.log(clickedCh);
+        checkAnswer();
     });
     // create event listener
+
+    
   }
 
   function checkAnswer(){
       if (clickedCh == corrChoices[qIndex]){
-          var result = sDisplay.createElement("h4");
+          var result = document.createElement("h4");
           result = "";
+          sDisplay.append(result);
           result.innerHTML = "You are correct" + points;
           points+=5;
-          
+          console.log(result, points);
       }else {
-          var result = sDisplay.createElement("h4");
+          var result = document.createElement("h4");
           result = "";
           result.innerHTML = "Wrong answer" + points;
       }
+
+      quizFlow();
      
 
   }
@@ -125,7 +132,7 @@ function showChoices () {
       }
       else{
           
-          var end = $("#finals").createElement(h1);
+          var end = $("#finals").createElement("h1");
           end.innerHTML = "GAME OVER <br> Total score is:" + points ;
 
 
