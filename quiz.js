@@ -3,11 +3,11 @@
 
 //Variables
 
-let qDisplay = $(".qContainer").Text;//display question
-let aDisplay = $(".quiz");//display answers
-let tDisplay = $(".timer");//display timer
-let sDisplay = $(".scores");//display scores
-let sButton = $(".start");//Start quiz on click
+//let qDisplay = $("#qCtn");//display question
+let aDisplay = $("#qZ");//display answers
+let tDisplay = $("#time");//display timer
+let sDisplay = $("#points");//display scores
+let sButton = $("#start");//Start quiz on click
 
 //Questions in an array & answers in objects
 let questions = [
@@ -59,9 +59,14 @@ let qIndex = 0; //current question index
 let qmax = questions.length-1; //length of question array
 
 function showQuiz(){
-  
-        console.log(questions[qIndex]);
-        $(".quiz").text(questions[qIndex]);   
+   console.log(questions[qIndex]);
+   let q = document.createElement("h3")
+   console.log(q)
+    q.innerHTML = questions[qIndex];
+    aDisplay.empty();
+    aDisplay.append(q);
+     // console.log(aDisplay) 
+    showChoices();  
   
 }
 
@@ -69,13 +74,23 @@ function showQuiz(){
 function showChoices () {
     const entries = Object.values(answers[qIndex]);
         console.log(entries.length);
-        //$("#c1").innerHTML += entries[0];
-    //var more=document.getElementById("more");
     for (let i = 0; i < entries.length; i++) {
       let choices = document.createElement("button");
+      choices.classList.add("btnr");
+      $("btnr").css("display", "block");
       choices.innerHTML= entries[i];
-      aDisplay.appendChild(choices);
+      aDisplay.append(choices);
+
+      // aDisplay.appen("<p class='btnr'>")
     }
+
+    
+
+
+    $("btnr").on("click", function(){
+        console.log(this)
+    })
+    // create event listener
   }
 
 
