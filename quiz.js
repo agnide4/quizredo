@@ -109,15 +109,16 @@ function showChoices () {
   function checkAnswer(){
       if (clickedCh == corrChoices[qIndex]){
           var result = document.createElement("h4");
-          result = "";
-          sDisplay.append(result);
-          result.innerHTML = "You are correct" + points;
+          //result = "";
           points+=5;
+          result += "You are correct" + points;
+          sDisplay.append(result);
           console.log(result, points);
       }else {
           var result = document.createElement("h4");
-          result = "";
-          result.innerHTML = "Wrong answer" + points;
+          //result = "";
+          console.log(result, points);
+          result += "Wrong answer" + points;
       }
 
       quizFlow();
