@@ -56,7 +56,7 @@ height: 75px;
 }
 .scores{
     /*contains scores*/
-    display: block;
+    display: inline-block;
     
 }
 .hScores{

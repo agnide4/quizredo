@@ -108,17 +108,18 @@ function showChoices () {
 
   function checkAnswer(){
       if (clickedCh == corrChoices[qIndex]){
-          var result = document.createElement("h4");
-          //result = "";
+          //var result = document.createElement("h4");
+          var result = "";
           points+=5;
-          result += "You are correct" + points;
-          sDisplay.append(result);
+          result += "You are correct " + points;
+          sDisplay.html(result);
           console.log(result, points);
       }else {
-          var result = document.createElement("h4");
-          //result = "";
+          //var result = document.createElement("h4");
+          result = "";
           console.log(result, points);
-          result += "Wrong answer" + points;
+          result += "Wrong answer. Your current score is: " + points;
+          sDisplay.html(result);
       }
 
       quizFlow();
@@ -133,14 +134,21 @@ function showChoices () {
       }
       else{
           
-          var end = $("#finals").createElement("h1");
-          end.innerHTML = "GAME OVER <br> Total score is:" + points ;
+          //var end = document.createElement("h1");
+          var fScore = "GAME OVER <br> Total score is :" + points;
+          var final = $("#final");
 
+          final.html(fScore);
 
+//create HTML elm then inserts the score into innerHTML
+//
+//save final elm as variable & append to  
 
 
       }
   }
+
+  
 
 
 
