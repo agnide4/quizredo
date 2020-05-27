@@ -70,7 +70,7 @@ console.log(countdown);
 
 function showQuiz(){
    console.log(questions[qIndex]);
-   let q = document.createElement("h3")
+   let q = document.createElement("h2")
    console.log(q)
     q.innerHTML = questions[qIndex];
     aDisplay.empty();
@@ -122,9 +122,10 @@ function showChoices () {
           console.log(result, points);
           result += "Wrong answer. Your current score is: " + points;
           sDisplay.html(result);
+          countdown -= (0.25*questions.length) * 60 * 1000;
       }
 
-      quizFlow();
+      quizFlow();   
      
 
   }
@@ -135,12 +136,10 @@ function showChoices () {
           showQuiz();
       }
       else{
-          
-          //var end = document.createElement("h1");
           var fScore = "GAME OVER <br> Total score is :" + points;
           var final = $("#final");
-
           final.html(fScore);
+          showPopup();
 
 //create HTML elm then inserts the score into innerHTML
 //
@@ -150,19 +149,11 @@ function showChoices () {
       }
   }
 
-function showPopup(){
-    $("#modal").addClass("active");
-    $("#qCtn").addClass("active");
-
-}
-
-$("#rQuiz").on("click", function(){
-    $("#qCtn").removeClass("active");
-    $("#modal").removeClass("active");
-    
-});
-
-
+  function showPopup(){
+      $(".qContainer").addClass("active");
+      $(".modal").addClass("active").html(fScore.quizFlow);
+      
+  }
 
 
 let timerId = setInterval(function(){
