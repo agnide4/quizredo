@@ -65,6 +65,8 @@ let qIndex = 0; //current question index
 let qmax = questions.length-1; //length of question array
 let clickedCh = "";
 let points = 0;
+let countdown = (0.5*questions.length) * 60 * 1000;
+console.log(countdown);
 
 function showQuiz(){
    console.log(questions[qIndex]);
@@ -148,7 +150,37 @@ function showChoices () {
       }
   }
 
-  
+function showPopup(){
+    $(".qContainer, .popup-content").addClass("active");
+
+}
+
+$(".close, .popup").on("click", function(){
+    $(".qContainer, .popup-content").removeClass("active");
+});
+
+
+function terminate(){
+    aDisplay.style.display = "none";
+    aDisplay.style.display = "bac"
+}
+
+let timerId = setInterval(function(){
+countdown -= 1000;
+let min = Math.floor(countdown / (60 * 1000));
+console.log(min);
+  //var sec = Math.floor(countdown - (min * 60 * 1000));  // wrong
+let sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
+console.log(sec);
+  if (countdown <= 0 && qIndex<questions.length) {
+     showPopup();
+     clearInterval(timerId);
+     //doSomething();
+  } else {
+     tDisplay.html(min + " : " + sec);
+  }
+
+}, 1000);
 
 
 

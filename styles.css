@@ -25,6 +25,17 @@ height: 75px;
 
 }
 
+.qContainer .popup-content .active{
+    visibility:visible;
+}
+
+.qContainer .popup-content {
+    visibility:hidden;
+}
+
+
+
+
 .quiz{
     /*Quiz container for quiz only*/
     display: flexbox;
@@ -59,6 +70,23 @@ height: 75px;
     display: inline-block;
     
 }
+/*
+.popup-overlay {
+    visibility:hidden;
+}
+    
+
+.popup-overlay.active{
+    visibility:visible;
+
+}
+    
+.popup-content.active {
+    visibility:visible;
+
+}*/
+
+
 .hScores{
     /*Table to store highest scores
 
