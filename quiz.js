@@ -151,19 +151,19 @@ function showChoices () {
   }
 
 function showPopup(){
-    $(".qContainer, .popup-content").addClass("active");
+    $("#modal").addClass("active");
+    $("#qCtn").addClass("active");
 
 }
 
-$(".close, .popup").on("click", function(){
-    $(".qContainer, .popup-content").removeClass("active");
+$("#rQuiz").on("click", function(){
+    $("#qCtn").removeClass("active");
+    $("#modal").removeClass("active");
+    
 });
 
 
-function terminate(){
-    aDisplay.style.display = "none";
-    aDisplay.style.display = "bac"
-}
+
 
 let timerId = setInterval(function(){
 countdown -= 1000;
