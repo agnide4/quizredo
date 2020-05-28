@@ -3,7 +3,7 @@
 
 //Variables
 
-//let qDisplay = $("#qCtn");//display question
+let qDisplay = $(".qContainer");//display question
 let aDisplay = $("#qZ");//display answers
 let tDisplay = $("#time");//display timer
 let sDisplay = $("#points");//display scores
@@ -66,6 +66,7 @@ let qmax = questions.length-1; //length of question array
 let clickedCh = "";
 let points = 0;
 let countdown = (0.5*questions.length) * 60 * 1000;
+
 console.log(countdown);
 
 function showQuiz(){
@@ -113,7 +114,7 @@ function showChoices () {
           //var result = document.createElement("h4");
           var result = "";
           points+=5;
-          result += "You are correct " + points;
+          result += "You are correct. Your current score is: " + points;
           sDisplay.html(result);
           console.log(result, points);
       }else {
@@ -122,7 +123,7 @@ function showChoices () {
           console.log(result, points);
           result += "Wrong answer. Your current score is: " + points;
           sDisplay.html(result);
-          countdown -= (0.25*questions.length) * 60 * 1000;
+          countdown -= (0.15*questions.length) * 60 * 1000;
       }
 
       quizFlow();   
@@ -136,24 +137,29 @@ function showChoices () {
           showQuiz();
       }
       else{
-          var fScore = "GAME OVER <br> Total score is :" + points;
-          var final = $("#final");
-          final.html(fScore);
-          showPopup();
+          fScore();
+       }
+  }
 
-//create HTML elm then inserts the score into innerHTML
-//
-//save final elm as variable & append to  
-
-
-      }
+  function fScore(){
+    var fScore = "<h3>GAME OVER</h3>" + "<h4>Total score is : </h4>"  + points;
+    var final = $("#final");
+    showPopup();
+    
+    final.html(fScore);
+    clearInterval(timerId);
   }
 
   function showPopup(){
-      $(".qContainer").addClass("active");
-      $(".modal").addClass("active").html(fScore.quizFlow);
+      aDisplay.addClass("modal"); 
+      $(".modal").addClass("active");
+      sButton.html("try again");
       
-  }
+ }
+
+ function getName(){
+     
+ }
 
 
 let timerId = setInterval(function(){
@@ -165,7 +171,7 @@ let sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
 console.log(sec);
   if (countdown <= 0 && qIndex<questions.length) {
      showPopup();
-     clearInterval(timerId);
+     fScore();
      //doSomething();
   } else {
      tDisplay.html(min + " : " + sec);

@@ -51,7 +51,7 @@ margin-left: 50px;
 
 }
 
-.qContainer .active{
+/*.qContainer .active{
     pointer-events: none;
   
     transform: translate(-50%, -50%) scale(1);
@@ -60,7 +60,7 @@ margin-left: 50px;
     
      
 
-}
+}*/
 
 
 
@@ -84,6 +84,14 @@ margin-left: 50px;
     align-items: center;
     
     
+}
+
+.quiz .modal {
+    pointer-events: none;
+  
+    transform: translate(-50%, -50%) scale(1);
+    transition: 200ms ease-in-out;
+    opacity: 0;
 }
 .qData{
     /*Contains timer and Scores stuck up on each other to the right*/
@@ -134,33 +142,35 @@ margin-left: 50px;
 
 }
 .modal.active{
-    display: block;
+    display: inline-block;
     transform: translate(-50%, -50%) scale(1);
     z-index: 10;
     position: fixed;
     top: 50%;
     left: 50%;
-    background-color:yellow;
+    background-color: skyblue;
+    opacity: 0.9;
     width: 80%;
     height: 80%;
+    text-align: center right;
+    text-indent: 40px;
+    text-size-adjust: 400px;
+    
+    
 
 }
-/*
+
+
+ 
 .modal .active .fScore{
-    text-align: center;
-    font-size: 400px;
+    margin-right: 1000px;
+    font-size: 900px;
     font-weight: bolder;
     padding: auto;
     
-}*/
-/*
-.modal-header{
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-}*/
+    
+}
+
 
 
 
