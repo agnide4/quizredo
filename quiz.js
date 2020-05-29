@@ -67,6 +67,7 @@ let clickedCh = "";
 let points = 0;
 let countdown = (0.5*questions.length) * 60 * 1000;
 
+
 console.log(countdown);
 
 function showQuiz(){
@@ -142,24 +143,53 @@ function showChoices () {
   }
 
   function fScore(){
-    var fScore = "<h3>GAME OVER</h3>" + "<h4>Total score is : </h4>"  + points;
     var final = $("#final");
     showPopup();
-    
-    final.html(fScore);
+    final.html(points);
     clearInterval(timerId);
+    //go get the scores to display
+    
+    //past_scores.html(scores_to_display);
+    
   }
 
   function showPopup(){
       aDisplay.addClass("modal"); 
       $(".modal").addClass("active");
       sButton.html("try again");
+      getPlData();
       
  }
 
- function getName(){
-     
+ 
+
+ //function renderScore(score) {
+     //return `<div class="score">player: ${score.player} points: ${score.points} <div>`
+ //}
+
+ function getPlData(){
+    //let x = $("#userInput").val();
+    let player = {
+        name: "",
+        score: points,
+     }
+    $("#userAction").on('click', function(){
+        player.name = $("#userInput").val();
+        player.score = points;
+
+    });
+    localStorage.setItem('player', JSON.stringify(player))
+    console.log(player);
+    
+
  }
+ 
+
+
+ var str = JSON.parse(localStorage.getItem('player'));
+ console.log(str.name);
+ 
+ 
 
 
 let timerId = setInterval(function(){

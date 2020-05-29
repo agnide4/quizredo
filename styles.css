@@ -171,6 +171,15 @@ margin-left: 50px;
     
 }
 
+.pName{
+    width: min-content;
+    margin-left: 40px;
+
+}
+.bSbmit{
+    font-size: 100%;
+}
+
 
 
 
