@@ -157,7 +157,7 @@ function showChoices () {
       aDisplay.addClass("modal"); 
       $(".modal").addClass("active");
       sButton.html("try again");
-      getPlData();
+      
       
  }
 
@@ -167,27 +167,95 @@ function showChoices () {
      //return `<div class="score">player: ${score.player} points: ${score.points} <div>`
  //}
 
- function getPlData(){
-    //let x = $("#userInput").val();
-    let player = {
-        name: "",
-        score: points,
-     }
-    $("#userAction").on('click', function(){
-        player.name = $("#userInput").val();
-        player.score = points;
 
-    });
-    localStorage.setItem('player', JSON.stringify(player))
-    console.log(player);
+    //let x = $("#userInput").val();
+
+
+    function hghest(){
+        var prevPlayers = JSON.parse(localStorage.getItem('players'));
+        const x = x.score;
+        const y = y.score;
+        function compareScores(x,y){
+            
+            let comparison = 0;
+            if (x>y) {
+            comparison = 1;
+           } else if (x<y) {
+    comparison = -1;
+  }
+            return comparison;
+
+}
+prevPlayers.sort(compareScores);
+
+        }
+
+    
+    
     
 
- }
+    function checkLclStorage(){
+        var prevPlayers = JSON.parse(localStorage.getItem('players'));
+        if (prevPlayers.length === null){
+            $("#userAction").on('click', function(){
+                let player = {
+                    name: "",
+                    score: points,
+                 }
+                player.name = $("#userInput").val();
+                player.score = points;
+                localStorage.setItem('players', JSON.stringify(player))
+                console.log(player);
+        
+            });
+        }else if (prevPlayers.length === !null  && prevPlayers.length<10){
+            $("#userAction").on('click', function(){
+                let player = {
+                    name: "",
+                    score: points,
+                 }
+                player.name = $("#userInput").val();
+                player.score = points;
+                localStorage.setItem('players', JSON.stringify(player));
+                prevPlayers.push(player);
+                hghest();
+                console.log(prevPlayers);
+                localStorage.setItem("players", JSON.stringify(prevPlayers));
+                
+
+            });        
+        } else if (prevPlayers >= 10){
+            $("#userAction").on('click', function(){
+                let player = {
+                    name: "",
+                    score: points,
+                 }
+                player.name = $("#userInput").val();
+                player.score = points;
+                if (player.score < prevPlayers[9].score){
+                    alert("U did not make tops ");
+                }else 
+                prevPlayers.pop();
+                localStorage.setItem('players', JSON.stringify(player));
+                prevPlayers.push(player);
+                hghest()
+                console.log(prevPlayers);
+                localStorage.setItem("players", JSON.stringify(prevPlayers));
+            });   
+
+        }
+
+
+    
+    
+    
+    
+
  
+    }
 
 
- var str = JSON.parse(localStorage.getItem('player'));
- console.log(str.name);
+ 
  
  
 
