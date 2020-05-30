@@ -157,7 +157,7 @@ function showChoices () {
       aDisplay.addClass("modal"); 
       $(".modal").addClass("active");
       sButton.html("try again");
-      
+      checkLclStorage();
       
  }
 
@@ -173,14 +173,14 @@ function showChoices () {
 
     function hghest(){
         var prevPlayers = JSON.parse(localStorage.getItem('players'));
-        const x = x.score;
-        const y = y.score;
-        function compareScores(x,y){
-            
+        
+        function compareScores(a,b){
+            a = a.score;
+            b = b.score;
             let comparison = 0;
-            if (x>y) {
+            if (a>b) {
             comparison = 1;
-           } else if (x<y) {
+           } else if (a<b) {
     comparison = -1;
   }
             return comparison;
@@ -196,7 +196,7 @@ prevPlayers.sort(compareScores);
 
     function checkLclStorage(){
         var prevPlayers = JSON.parse(localStorage.getItem('players'));
-        if (prevPlayers.length === null){
+        if (prevPlayers == null){
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
@@ -208,7 +208,7 @@ prevPlayers.sort(compareScores);
                 console.log(player);
         
             });
-        }else if (prevPlayers.length === !null  && prevPlayers.length<10){
+        }else if (prevPlayers == !null  && prevPlayers.length<10){
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
