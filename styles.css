@@ -11,8 +11,8 @@
 border-style: double;
 height: 75px;
 align-content: center;
-margin: 20px;
-margin-bottom: 0;
+background-color: springgreen;
+margin-bottom: 0px;
 width: 1200px;
 margin-left: 50px;
 
@@ -21,11 +21,11 @@ margin-left: 50px;
 
 .header{
     /*header */
-    border-style: dashed;
-    height: 70px;
+    background-color: springgreen;
+    
     
     align-self: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
 
 
@@ -75,6 +75,8 @@ margin-left: 50px;
 }
 
 
+
+
 .quiz{
     /*Quiz container for quiz only*/
     display: flexbox;
@@ -96,10 +98,11 @@ margin-left: 50px;
 .qData{
     /*Contains timer and Scores stuck up on each other to the right*/
     border-style: solid;
-    border-color: red;
+    
     height: 545px;
     width: 420px;
     display:flexbox;
+    background-color: lightcyan;
 
 
 
@@ -108,13 +111,15 @@ margin-left: 50px;
 
 .timer{
     /*contains timer only*/
-    border-color: green;
-    border-style: dashed;
+    border-radius: 50%;
+    
+    border-style: solid;
     height: 350px;
     font-size: 70px;
     align-items: center;
     text-align: center;
     padding: 100px;
+    background-color: lightcyan;
 
 }
 .scores{
@@ -123,6 +128,7 @@ margin-left: 50px;
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
+
     
 }
 

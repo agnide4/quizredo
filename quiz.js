@@ -67,7 +67,7 @@ let qmax = questions.length-1; //length of question array
 let clickedCh = "";
 let points = 0;
 let countdown = (0.5*questions.length) * 60 * 1000;
-
+let timerId = 0;
 
 console.log(countdown);
 
@@ -159,7 +159,12 @@ function showChoices () {
       aDisplay.addClass("modal"); 
       $(".modal").addClass("active");
       sButton.html("try again");
-      
+      sButton.on("click", function(){
+          qIndex=0;
+          location.reload(true);
+
+      })
+
 
      
      
@@ -182,6 +187,7 @@ function showChoices () {
                     name: "",
                     score: points,
                  }
+                 $("#userAction").attr("disabled", true);
                 player.name = $("#userInput").val();
                 player.score = points;
                 prevPlayers.push(player);
@@ -199,6 +205,7 @@ function showChoices () {
                     name: "",
                     score: points,
                  }
+                $("#userAction").attr("disabled", true);
                 player.name = $("#userInput").val();
                 player.score = points;
                 prevPlayers.push(player);
@@ -214,13 +221,15 @@ function showChoices () {
                     name: "",
                     score: points,
                  }
+                 $("#userAction").attr("disabled", true);
                 player.name = $("#userInput").val();
                 player.score = points;
                 prevPlayers.sort(compareScores);
                 console.log(prevPlayers);
                 if (player.score < prevPlayers[9].score){
                     
-                    alert("U did not make tops ");
+                    sButton.html("You need to study more. <br> Try again?");
+                    
                 }else {
                 prevPlayers.pop();
                 prevPlayers.push(player);
@@ -300,27 +309,28 @@ function tRow(table, data) {
  
  
  
+sButton.on('click', function(){
+    
+    timerId = setInterval(function(){
+        countdown -= 1000;
+        let min = Math.floor(countdown / (60 * 1000));
+        console.log(min);
+          //var sec = Math.floor(countdown - (min * 60 * 1000));  // wrong
+        let sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
+        console.log(sec);
+          if (countdown <= 0 && qIndex<questions.length) {
+             showPopup();
+             fScore();
+             //doSomething();
+          } else {
+             tDisplay.html(min + " : " + sec);
+          }
+        
+        }, 1000);     
+        
 
 
-let timerId = setInterval(function(){
-countdown -= 1000;
-let min = Math.floor(countdown / (60 * 1000));
-console.log(min);
-  //var sec = Math.floor(countdown - (min * 60 * 1000));  // wrong
-let sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
-console.log(sec);
-  if (countdown <= 0 && qIndex<questions.length) {
-     showPopup();
-     fScore();
-     //doSomething();
-  } else {
-     tDisplay.html(min + " : " + sec);
-  }
-
-}, 1000);
-
-
-
+});
 
 showQuiz();
 //console.log(showQuiz());
