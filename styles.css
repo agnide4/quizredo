@@ -142,7 +142,7 @@ margin-left: 50px;
 
 }
 .modal.active{
-    display: inline-block;
+    display: inline-flex;
     transform: translate(-50%, -50%) scale(1);
     z-index: 10;
     position: fixed;
@@ -152,10 +152,10 @@ margin-left: 50px;
     opacity: 0.9;
     width: 80%;
     height: 80%;
-    text-align: center right;
+    text-align: center;
     text-indent: 40px;
     text-size-adjust: 400px;
-    
+    justify-content: space-around;
     
 
 }
@@ -181,11 +181,27 @@ margin-left: 50px;
 }
 
 
+.scTable{
+    background-color: skyblue;
+    width:40%;
+    font-size: 15px;
+    text-transform: uppercase;
+}
 
-
-.hScores{
+.tScore{
     /*Table to store highest scores*/
+    align-self: flex-start;
 
+
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+th, td {
+    padding: 5px;
+    text-align: center;
+    margin: 3px;
 }
 
 .footer{
