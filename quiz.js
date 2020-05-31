@@ -172,20 +172,23 @@ function showChoices () {
 
 
     function hghest(){
-        var prevPlayers = [JSON.parse(localStorage.getItem('players'))];
+        var prevPlayers = JSON.parse(localStorage.getItem('players'));
+        console.log(Array.isArray(prevPlayers));
+        console.log(prevPlayers);
             function compareScores(a,b){
             a = a.score;
             b = b.score;
             let comparison = 0;
-            if (a>b) {
+            if (a<b) {
             comparison = 1;
-           } else if (a<b) {
+           } else if (a>b) {
     comparison = -1;
   }
             return comparison;
 
 }
 prevPlayers.sort(compareScores);
+console.log(prevPlayers);
 
         }
 
@@ -193,8 +196,9 @@ prevPlayers.sort(compareScores);
   
 
     function checkLclStorage(){
-        var x = JSON.parse(localStorage.getItem('players'));
-        var prevPlayers = [x];
+      
+        var prevPlayers = JSON.parse(localStorage.getItem('players')) || [];
+        
         console.log(Array.isArray(prevPlayers));
 
         console.log(prevPlayers.length);
@@ -206,8 +210,9 @@ prevPlayers.sort(compareScores);
                  }
                 player.name = $("#userInput").val();
                 player.score = points;
-                localStorage.setItem('players', JSON.stringify(player))
-                console.log(player);
+                prevPlayers.push(player);
+                localStorage.setItem('players', JSON.stringify(prevPlayers));
+                console.log(prevPlayers);
         
             });
         }else if (prevPlayers.length > 0  && prevPlayers.length<10){
@@ -219,11 +224,10 @@ prevPlayers.sort(compareScores);
                  }
                 player.name = $("#userInput").val();
                 player.score = points;
-                localStorage.setItem('players', JSON.stringify(player));
                 prevPlayers.push(player);
-                hghest();
+                localStorage.setItem('players', JSON.stringify(prevPlayers));
                 console.log(prevPlayers);
-                localStorage.setItem("players", JSON.stringify(prevPlayers));
+                
                 
 
             });        
@@ -237,13 +241,16 @@ prevPlayers.sort(compareScores);
                 player.score = points;
                 if (player.score < prevPlayers[9].score){
                     alert("U did not make tops ");
-                }else 
+                }else {
                 prevPlayers.pop();
-                localStorage.setItem('players', JSON.stringify(player));
                 prevPlayers.push(player);
-                hghest();
+                localStorage.setItem('players', JSON.stringify(prevPlayers));
+                
+                }
+                
+                
                 console.log(prevPlayers);
-                localStorage.setItem("players", JSON.stringify(prevPlayers));
+                
             });   
 
         }
