@@ -8,6 +8,7 @@ let aDisplay = $("#qZ");//display answers
 let tDisplay = $("#time");//display timer
 let sDisplay = $("#points");//display scores
 let sButton = $("#start");//Start quiz on click
+let table = document.getElementById("tScore");
 
 //Questions in an array & answers in objects
 let questions = [
@@ -154,43 +155,16 @@ function showChoices () {
   }
 
   function showPopup(){
+      checkLclStorage();
       aDisplay.addClass("modal"); 
       $(".modal").addClass("active");
       sButton.html("try again");
-      checkLclStorage();
       
+
+     
+     
  }
 
- 
-
- //function renderScore(score) {
-     //return `<div class="score">player: ${score.player} points: ${score.points} <div>`
- //}
-
-
-    //let x = $("#userInput").val();
-
-
-    function hghest(){
-        var prevPlayers = JSON.parse(localStorage.getItem('players'));
-        console.log(Array.isArray(prevPlayers));
-        console.log(prevPlayers);
-            function compareScores(a,b){
-            a = a.score;
-            b = b.score;
-            let comparison = 0;
-            if (a<b) {
-            comparison = 1;
-           } else if (a>b) {
-    comparison = -1;
-  }
-            return comparison;
-
-}
-prevPlayers.sort(compareScores);
-console.log(prevPlayers);
-
-        }
 
     
   
@@ -212,6 +186,9 @@ console.log(prevPlayers);
                 player.score = points;
                 prevPlayers.push(player);
                 localStorage.setItem('players', JSON.stringify(prevPlayers));
+                prevPlayers = JSON.parse(localStorage.getItem('players'));
+                prevPlayers.sort(prevPlayers);
+
                 console.log(prevPlayers);
         
             });
@@ -231,7 +208,7 @@ console.log(prevPlayers);
                 
 
             });        
-        } else if (prevPlayers.length >= 10){
+        } else if (prevPlayers.length = 10){
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
@@ -239,27 +216,87 @@ console.log(prevPlayers);
                  }
                 player.name = $("#userInput").val();
                 player.score = points;
+                prevPlayers.sort(compareScores);
+                console.log(prevPlayers);
                 if (player.score < prevPlayers[9].score){
+                    
                     alert("U did not make tops ");
                 }else {
                 prevPlayers.pop();
                 prevPlayers.push(player);
                 localStorage.setItem('players', JSON.stringify(prevPlayers));
+                prevPlayers = JSON.parse(localStorage.getItem('players'));
+                prevPlayers.sort(compareScores);
                 
                 }
-                
+                scoreTable(prevPlayers);
                 
                 console.log(prevPlayers);
                 
             });   
 
         }
-
+        
 
     
     }
 
+   
 
+    function compareScores(a,b){
+            a = a.score;
+            b = b.score;
+            let comparison = 0;
+            if (a<b) {
+            comparison = 1;
+           } else if (a>b) {
+    comparison = -1;
+  }
+            return comparison;
+}
+
+
+
+        
+
+
+function scoreTable(Array){
+    //var prevPlayers = [];
+    //prevPlayers = JSON.parse(localStorage.getItem('players'));
+    Array.sort(compareScores);
+    
+    tData = Object.keys(Array[0]);
+    tHead(table,tData);
+    
+    tRow(table,Array);
+
+}
+
+function tHead(table, tData){
+    //let thead = table.createTHead;
+    //console.log(thead);
+    let row = table.insertRow(0);
+    for(let key of tData){
+        let th = document.createElement("th");
+        let text = document.createTextNode(key);
+        th.appendChild(text);
+        row.appendChild(th);
+    
+    }
+    
+}
+
+function tRow(table, data) {
+    for (let element of data) {
+      let row = table.insertRow();
+      for (key in element) {
+        let cell = row.insertCell();
+        let text = document.createTextNode(element[key]);
+        cell.appendChild(text);
+      }
+    }
+  }
+  
  
  
  
