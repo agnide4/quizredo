@@ -1,7 +1,7 @@
 
 
 
-//Variables
+//Variables targeted for DOM manipulation
 
 let qDisplay = $(".qContainer");//display question
 let aDisplay = $("#qZ");//display answers
@@ -64,29 +64,29 @@ $(document).ready(function(){
 
 let qIndex = 0; //current question index
 let qmax = questions.length-1; //length of question array
-let clickedCh = "";
-let points = 0;
-let countdown = (0.5*questions.length) * 60 * 1000;
-let timerId = 0;
+let clickedCh = ""; //clicked answer
+let points = 0; //score
+let countdown = (0.5*questions.length) * 60 * 1000; //length of minutes per questions
+let timerId = 0; //timer
 
-console.log(countdown);
 
+//Displaying the questions
 function showQuiz(){
-   console.log(questions[qIndex]);
+   
    let q = document.createElement("h2")
-   console.log(q)
+   
     q.innerHTML = questions[qIndex];
     aDisplay.empty();
     aDisplay.append(q);
-     // console.log(aDisplay) 
+    
     showChoices();  
   
 }
 
-
+//displaying the answers
 function showChoices () {
     const entries = Object.values(answers[qIndex]);
-        //console.log(entries.length);
+    
     for (let i = 0; i < entries.length; i++) {
       let choices = document.createElement("button");
       choices.classList.add("btnr");
@@ -94,35 +94,32 @@ function showChoices () {
       choices.innerHTML= entries[i];
       aDisplay.append(choices);
 
-      // aDisplay.appen("<p class='btnr'>")
+     
     }
 
     
 
+    //log user answer value
     clickedCh.empty;
     $(".btnr").on("click", function(){
-        console.log(this);
         clickedCh = this.innerHTML;
-        console.log(clickedCh);
         checkAnswer();
     });
-    // create event listener
-
+    
     
   }
 
+
+ //compare user choice to correct answers array
   function checkAnswer(){
       if (clickedCh == corrChoices[qIndex]){
-          //var result = document.createElement("h4");
           var result = "";
           points+=5;
           result += "You are correct. Your current score is: " + points;
           sDisplay.html(result);
-          console.log(result, points);
+          
       }else {
-          //var result = document.createElement("h4");
           result = "";
-          console.log(result, points);
           result += "Wrong answer. Your current score is: " + points;
           sDisplay.html(result);
           countdown -= (0.15*questions.length) * 60 * 1000;
@@ -133,6 +130,8 @@ function showChoices () {
 
   }
 
+
+  //move through the quiz
   function quizFlow(){
       qIndex++;
       if (qIndex<questions.length){
@@ -143,17 +142,19 @@ function showChoices () {
        }
   }
 
+
+  //Final score at the end of the quiz
   function fScore(){
     var final = $("#final");
     showPopup();
     final.html(points);
     clearInterval(timerId);
-    //go get the scores to display
     
-    //past_scores.html(scores_to_display);
     
   }
 
+
+  //Display modal over quiz at the end of quiz
   function showPopup(){
       checkLclStorage();
       aDisplay.addClass("modal"); 
@@ -173,14 +174,11 @@ function showChoices () {
 
     
   
-
+    //Checking local storage before storing new player data 
     function checkLclStorage(){
       
         var prevPlayers = JSON.parse(localStorage.getItem('players')) || [];
         
-        console.log("prevplay:", prevPlayers);
-
-        console.log(prevPlayers.length);
         if (prevPlayers.length == 0){
             $("#userAction").on('click', function(){
                 let player = {
@@ -190,19 +188,15 @@ function showChoices () {
                  $("#userAction").attr("disabled", true);
                 player.name = $("#userInput").val();
                 player.score = points;
-                console.log("PLAYER:", player)
                 prevPlayers.push(player);
                 localStorage.setItem('players', JSON.stringify(prevPlayers));
                 prevPlayers = JSON.parse(localStorage.getItem('players'));
-
-               // prevPlayers.sort(prevPlayers);
-
-                console.log(prevPlayers);
+               
                 scoreTable(prevPlayers);
         
             });
         }else if (prevPlayers.length > 0  && prevPlayers.length<10){
-            console.log(prevPlayers.length);
+            
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
@@ -213,7 +207,7 @@ function showChoices () {
                 player.score = points;
                 prevPlayers.push(player);
                 localStorage.setItem('players', JSON.stringify(prevPlayers));
-                console.log(prevPlayers);
+                
                 scoreTable(prevPlayers);
                 
 
@@ -228,7 +222,7 @@ function showChoices () {
                 player.name = $("#userInput").val();
                 player.score = points;
                 prevPlayers.sort(compareScores);
-                console.log(prevPlayers);
+                
                 if (player.score < prevPlayers[9].score){
                     
                     sButton.html("You need to study more. <br> Try again?");
@@ -243,8 +237,6 @@ function showChoices () {
                 }
                 scoreTable(prevPlayers);
                 
-                console.log(prevPlayers);
-                
             });   
 
         }
@@ -254,7 +246,7 @@ function showChoices () {
     }
 
    
-
+    //Defining comparison terms
     function compareScores(a,b){
             a = a.score;
             b = b.score;
@@ -268,25 +260,16 @@ function showChoices () {
 }
 
 
-
-        
-
-
+//Rendering the score table
 function scoreTable(Array){
-    //var prevPlayers = [];
-    //prevPlayers = JSON.parse(localStorage.getItem('players'));
     Array.sort(compareScores);
-    
     tData = Object.keys(Array[0]);
     tHead(table,tData);
-    
     tRow(table,Array);
 
 }
-
+//Table score header
 function tHead(table, tData){
-    //let thead = table.createTHead;
-    //console.log(thead);
     let row = table.insertRow(0);
     for(let key of tData){
         let th = document.createElement("th");
@@ -297,7 +280,7 @@ function tHead(table, tData){
     }
     
 }
-
+//Table score Data
 function tRow(table, data) {
     for (let element of data) {
       let row = table.insertRow();
@@ -310,7 +293,7 @@ function tRow(table, data) {
   }
   
  
- 
+ //Start button
  
 sButton.on('click', function(){
     
@@ -318,14 +301,12 @@ sButton.on('click', function(){
         showQuiz();
         countdown -= 1000;
         let min = Math.floor(countdown / (60 * 1000));
-        console.log(min);
-          //var sec = Math.floor(countdown - (min * 60 * 1000));  // wrong
+        
         let sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
-        console.log(sec);
+       
           if (countdown <= 0 && qIndex<questions.length) {
              showPopup();
              fScore();
-             //doSomething();
           } else {
              tDisplay.html(min + " : " + sec);
           }
@@ -337,7 +318,7 @@ sButton.on('click', function(){
 });
 
 
-//console.log(showQuiz());
+
     
 });
 
