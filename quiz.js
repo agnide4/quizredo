@@ -312,6 +312,7 @@ function tRow(table, data) {
 sButton.on('click', function(){
     
     timerId = setInterval(function(){
+        showQuiz();
         countdown -= 1000;
         let min = Math.floor(countdown / (60 * 1000));
         console.log(min);
@@ -328,11 +329,11 @@ sButton.on('click', function(){
         
         }, 1000);     
         
-
+       
 
 });
 
-showQuiz();
+
 //console.log(showQuiz());
     
 });
