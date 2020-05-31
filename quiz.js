@@ -178,7 +178,7 @@ function showChoices () {
       
         var prevPlayers = JSON.parse(localStorage.getItem('players')) || [];
         
-        console.log(Array.isArray(prevPlayers));
+        console.log("prevplay:", prevPlayers);
 
         console.log(prevPlayers.length);
         if (prevPlayers.length == 0){
@@ -190,12 +190,15 @@ function showChoices () {
                  $("#userAction").attr("disabled", true);
                 player.name = $("#userInput").val();
                 player.score = points;
+                console.log("PLAYER:", player)
                 prevPlayers.push(player);
                 localStorage.setItem('players', JSON.stringify(prevPlayers));
                 prevPlayers = JSON.parse(localStorage.getItem('players'));
-                prevPlayers.sort(prevPlayers);
+
+               // prevPlayers.sort(prevPlayers);
 
                 console.log(prevPlayers);
+                scoreTable(prevPlayers);
         
             });
         }else if (prevPlayers.length > 0  && prevPlayers.length<10){
@@ -211,7 +214,7 @@ function showChoices () {
                 prevPlayers.push(player);
                 localStorage.setItem('players', JSON.stringify(prevPlayers));
                 console.log(prevPlayers);
-                
+                scoreTable(prevPlayers);
                 
 
             });        
