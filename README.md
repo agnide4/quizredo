@@ -10,3 +10,4 @@ At the end of the quiz Player is asked for his/her name.
 Player score is then compared to other players and a table of the highest scores is displayed
 If player score is too low to make it into the top scores the start button message changes and advises player to study    more or try again
 
+![](Quiz%20page%20score%20table%20preview.JPG)
