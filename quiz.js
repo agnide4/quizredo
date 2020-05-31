@@ -172,9 +172,8 @@ function showChoices () {
 
 
     function hghest(){
-        var prevPlayers = JSON.parse(localStorage.getItem('players'));
-        
-        function compareScores(a,b){
+        var prevPlayers = [JSON.parse(localStorage.getItem('players'))];
+            function compareScores(a,b){
             a = a.score;
             b = b.score;
             let comparison = 0;
@@ -191,12 +190,15 @@ prevPlayers.sort(compareScores);
         }
 
     
-    
-    
+  
 
     function checkLclStorage(){
-        var prevPlayers = JSON.parse(localStorage.getItem('players'));
-        if (prevPlayers == null){
+        var x = JSON.parse(localStorage.getItem('players'));
+        var prevPlayers = [x];
+        console.log(Array.isArray(prevPlayers));
+
+        console.log(prevPlayers.length);
+        if (prevPlayers.length == 0){
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
@@ -208,7 +210,8 @@ prevPlayers.sort(compareScores);
                 console.log(player);
         
             });
-        }else if (prevPlayers == !null  && prevPlayers.length<10){
+        }else if (prevPlayers.length > 0  && prevPlayers.length<10){
+            console.log(prevPlayers.length);
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
@@ -224,7 +227,7 @@ prevPlayers.sort(compareScores);
                 
 
             });        
-        } else if (prevPlayers >= 10){
+        } else if (prevPlayers.length >= 10){
             $("#userAction").on('click', function(){
                 let player = {
                     name: "",
@@ -238,7 +241,7 @@ prevPlayers.sort(compareScores);
                 prevPlayers.pop();
                 localStorage.setItem('players', JSON.stringify(player));
                 prevPlayers.push(player);
-                hghest()
+                hghest();
                 console.log(prevPlayers);
                 localStorage.setItem("players", JSON.stringify(prevPlayers));
             });   
@@ -247,11 +250,6 @@ prevPlayers.sort(compareScores);
 
 
     
-    
-    
-    
-
- 
     }
 
 
